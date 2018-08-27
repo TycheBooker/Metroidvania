@@ -12,7 +12,9 @@ set (CMAKE_CXX_STANDARD 11)
 #set (SOURCE_FILES main.cpp)
 
 ## If you want to link SFML statically
-set(SFML_STATIC_LIBRARIES TRUE)
+if (NOT APPLE)
+  set(SFML_STATIC_LIBRARIES TRUE)
+endif(NOT APPLE)
 
 ## In most cases better set in the CMake cache
 set(SFML_DIR "C:/SFML/lib/cmake/SFML")
