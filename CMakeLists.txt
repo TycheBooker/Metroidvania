@@ -8,8 +8,12 @@ project(Metroidvania)
 #set the C++ standard to be used
 set (CMAKE_CXX_STANDARD 11)
 
-#set source files
-#set (SOURCE_FILES main.cpp)
+# Bring the headers into the project
+include_directories(include)
+
+## set source files
+# set (SOURCES main.cpp)
+file(GLOB SOURCES "src/*.cpp")
 
 ## If you want to link SFML statically
 if (NOT APPLE)
@@ -22,7 +26,7 @@ set(SFML_DIR "C:/SFML/lib/cmake/SFML")
 find_package(SFML 2.5 COMPONENTS graphics audio system window REQUIRED)
 
 # Add source to this project's executable.
-add_executable (Metroidvania main.cpp)
+add_executable (Metroidvania ${SOURCES})
 
 target_link_libraries(Metroidvania sfml-graphics sfml-audio sfml-system sfml-window)
 
