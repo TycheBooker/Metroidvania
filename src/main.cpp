@@ -1,8 +1,5 @@
-// Metroidvania.cpp : Defines the entry point for the application.
-//
-
-#include "main.h"
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 int main()
 {
