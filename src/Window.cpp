@@ -21,6 +21,8 @@ void Window::setup(const std::string &t_title, const sf::Vector2u &t_size)
 	m_windowSize = t_size;
 	m_isFullscreen = false;
 	m_isDone = false;
+    m_isFocused = true;
+    m_eventManager.addCallback("Window_close", &Window::close, this);
 	create();
 }
 
@@ -41,15 +43,19 @@ void Window::update()
 	sf::Event event;
 	while(m_window.pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed)
-		{
-			m_isDone = true;
-		}
-		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F5)
-		{
-			toggleFullscreen();
-		}
+        if (event.type == sf::Event::LostFocus)
+        {
+            m_isFocused = false;
+            m_eventManager.setFocus(false);
+        }
+        else if (event.type == sf::Event::GainedFocus)
+        {
+            m_isFocused = true;
+            m_eventManager.setFocus(true);
+        }
+        m_eventManager.handleEvent(event);
 	}
+    m_eventManager.update();
 }
 
 void Window::toggleFullscreen()
@@ -57,6 +63,11 @@ void Window::toggleFullscreen()
 	m_isFullscreen = !m_isFullscreen;
 	destroy();
 	create();
+}
+
+void Window::close(EventDetails * t_details = nullptr)
+{
+    m_isDone = true;
 }
 
 void Window::beginDraw()
@@ -79,9 +90,19 @@ bool Window::isFullscreen()
 	return m_isFullscreen;
 }
 
+bool Window::isFocused()
+{
+    return m_isFocused;
+}
+
 sf::Vector2u Window::getWindowSize()
 {
 	return m_windowSize;
+}
+
+EventManager* Window::getEventManager()
+{
+    return &m_eventManager;
 }
 
 void Window::draw(sf::Drawable & t_drawable)
