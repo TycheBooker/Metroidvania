@@ -1,7 +1,10 @@
 #include "Game.h"
 
-Game::Game()
+Game::Game() : m_window("Metroidvania", sf::Vector2u(800, 600))
 {
+	m_clock.restart();
+	srand(time(nullptr));
+	m_elapsed = sf::Time::Zero;
 }
 
 Game::~Game()
@@ -17,6 +20,11 @@ void Game::render()
 {
 	m_window.beginDraw();
 	m_window.endDraw();
+}
+
+Window * Game::getWindow()
+{
+	return &m_window;
 }
 
 sf::Time Game::getElapsed()

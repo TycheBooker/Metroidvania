@@ -40,6 +40,11 @@ bool EventManager::removeBinding(std::string t_name)
     return true;
 }
 
+void EventManager::setFocus(const bool & t_focus)
+{
+	m_hasFocus = t_focus;
+}
+
 void EventManager::removeCallback(const std::string & t_name)
 {
     m_callbacks.erase(t_name);

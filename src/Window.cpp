@@ -58,14 +58,14 @@ void Window::update()
     m_eventManager.update();
 }
 
-void Window::toggleFullscreen()
+void Window::toggleFullscreen(EventDetails * t_details)
 {
 	m_isFullscreen = !m_isFullscreen;
 	destroy();
 	create();
 }
 
-void Window::close(EventDetails * t_details = nullptr)
+void Window::close(EventDetails * t_details)
 {
     m_isDone = true;
 }

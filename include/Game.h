@@ -7,7 +7,6 @@ public:
 	Game();
 	~Game();
 
-	void handleInput();
 	void update();
 	void render();
 	Window * getWindow();

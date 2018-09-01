@@ -12,7 +12,11 @@ set (CMAKE_CXX_STANDARD 11)
 include_directories(include)
 
 ## set source files
-# set (SOURCES main.cpp)
+# set (SOURCES 
+#		main.cpp 
+#		Game.cpp 
+#		Window.cpp 
+#		EventManager.cpp)
 file(GLOB SOURCES "src/*.cpp")
 
 ## If you want to link SFML statically

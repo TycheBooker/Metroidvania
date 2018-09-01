@@ -106,7 +106,7 @@ private:
 };
 
 template<class T>
-inline bool addCallback(const std::string & t_name, void(T::*t_func) (EventDetails*), T* t_instance)
+inline bool EventManager::addCallback(const std::string & t_name, void(T::*t_func) (EventDetails*), T* t_instance)
 {
 	auto callback = std::bind(t_func, t_instance, std::placeholders::_1);
 	return m_callbacks.emplace(t_name, callback).second;
