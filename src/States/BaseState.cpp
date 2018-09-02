@@ -1,5 +1,4 @@
 #include "BaseState.h"
-#include "..\include\BaseState.h"
 
 BaseState::BaseState(StateManager * t_stateManager) :
 	m_stateManager(t_stateManager),
@@ -26,7 +25,7 @@ void BaseState::setTranscendent(const bool & t_transcendent)
 	m_transcendent = t_transcendent;
 }
 
-bool BaseState::isTransendent() const
+bool BaseState::isTranscendent() const
 {
 	return m_transcendent;
 }

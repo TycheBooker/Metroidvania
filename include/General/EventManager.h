@@ -111,7 +111,7 @@ private:
 template<class T>
 inline bool EventManager::addCallback(StateType t_state, const std::string & t_name, void(T::*t_func) (EventDetails*), T* t_instance)
 {
-	aut itr = m_callbacks.emplace(
+	auto itr = m_callbacks.emplace(
 		t_state, CallbackContainer()).first;
 	auto callback = std::bind(t_func, t_instance, std::placeholders::_1);
 	return itr->second.emplace(t_name, callback).second;

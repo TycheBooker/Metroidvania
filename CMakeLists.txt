@@ -9,7 +9,7 @@ project(Metroidvania)
 set (CMAKE_CXX_STANDARD 11)
 
 # Bring the headers into the project
-include_directories(include)
+include_directories(include include/States include/General)
 
 ## set source files
 # set (SOURCES 
@@ -17,7 +17,7 @@ include_directories(include)
 #		Game.cpp 
 #		Window.cpp 
 #		EventManager.cpp)
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/**/*.cpp")
 
 ## If you want to link SFML statically
 if (NOT APPLE)

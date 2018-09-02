@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseState.h"
 #include "SharedContext.h"
+#include "State_Intro.h"
 
 enum class StateType
 {
@@ -40,8 +41,8 @@ private:
 	void registerState(const StateType & t_type);
 
 	SharedContext * m_shared;
-	StateContainer * m_states;
-	TypeContainer * m_toRemove;
+	StateContainer m_states;
+	TypeContainer m_toRemove;
 	StateFactory m_stateFactory;
 };
 
