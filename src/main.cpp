@@ -7,6 +7,6 @@ int main()
 	{
 		game.update();
 		game.render();
-		game.restartClock();
+		game.lateUpdate();
 	}
 }

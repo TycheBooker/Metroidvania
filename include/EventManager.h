@@ -76,7 +76,9 @@ struct Binding
 };
 
 using Bindings = std::unordered_map<std::string, Binding*>;
-using Callbacks = std::unordered_map<std::string, std::function<void(EventDetails*)>>;
+using CallbackContainer = std::unordered_map<std::string, std::function<void(EventDetails*)>>;
+enum class StateType;
+using Callbacks = std::unordered_map<StateType, CallbackContainer>;
 
 class EventManager
 {
@@ -90,8 +92,8 @@ public:
 	void setFocus(const bool & t_focus);
 
 	template<class T>
-	bool addCallback(const std::string & t_name, void(T::*t_func) (EventDetails*), T* t_instance);
-	void removeCallback(const std::string & t_name);
+	bool addCallback(StateType t_state, const std::string & t_name, void(T::*t_func) (EventDetails*), T* t_instance);
+	bool removeCallback(StateType t_state, const std::string & t_name);
 
 	void handleEvent(sf::Event & t_event);
 	void update();
@@ -102,12 +104,15 @@ private:
 
 	Bindings m_bindings;
 	Callbacks m_callbacks;
+	StateType m_currentState;
 	bool m_hasFocus;
 };
 
 template<class T>
-inline bool EventManager::addCallback(const std::string & t_name, void(T::*t_func) (EventDetails*), T* t_instance)
+inline bool EventManager::addCallback(StateType t_state, const std::string & t_name, void(T::*t_func) (EventDetails*), T* t_instance)
 {
+	aut itr = m_callbacks.emplace(
+		t_state, CallbackContainer()).first;
 	auto callback = std::bind(t_func, t_instance, std::placeholders::_1);
-	return m_callbacks.emplace(t_name, callback).second;
+	return itr->second.emplace(t_name, callback).second;
 }
