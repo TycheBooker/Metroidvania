@@ -52,5 +52,5 @@ inline void StateManager::registerState(const StateType &type)
 {
     stateFactory[type] = [this]() -> BaseState * {
         return new T(this);
-    }
+    };
 }

@@ -101,6 +101,11 @@ sf::Vector2u Window::getWindowSize()
     return windowSize;
 }
 
+sf::RenderWindow *Window::getRenderWindow()
+{
+    return &window;
+}
+
 EventManager *Window::getEventManager()
 {
     return &eventManager;

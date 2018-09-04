@@ -10,8 +10,15 @@ public:
 	~State_Intro();
 
 	virtual void onCreate();
+    virtual void onDestroy();
 
-	void skip(EventDetails * details);
+    virtual void activate();
+    virtual void deactivate();
+
+    virtual void update(const sf::Time &timez) ;
+    virtual void draw();
+
+	void skip();
 private:
 	sf::Texture introTexture;
 	sf::Sprite introSprite;

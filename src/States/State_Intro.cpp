@@ -31,3 +31,42 @@ void State_Intro::onCreate()
     EventManager *eventManager = stateManager->getContext()->eventManager;
     eventManager->addCallback(StateType::Intro, "Intro_Continue", &State_Intro::skip, this);
 }
+
+void State_Intro::onDestroy()
+{
+    EventManager *eventManager = stateManager->getContext()->eventManager;
+    eventManager->removeCallback(StateType::Intro, "Intro_Continue");
+}
+
+void State_Intro::update(const sf::Time &time)
+{
+    if (timePassed < 5.f) {
+        timePassed += time;
+        introSprite.setPosition(introSprite.getPosition().x, introSprite.getPosition().y + (48 * time));
+    }
+}
+
+void State_Intro::draw()
+{
+    sf::RenderWindow *window = stateManager->getContext()->window->getRenderWindow();
+    window->draw(introSprite);
+    if (timePassed >= 5.f) {
+        window->draw(text);
+    }
+}
+
+void State_Intro::skip()
+{
+    if (timePassed >= 5.f) {
+        stateManager->switchTo(StateType::MainMenu);
+        stateManager->remove(StateType::Intro);
+    }
+}
+
+void State_Intro::Activate()
+{
+}
+
+void State_Intro::Deactivate()
+{
+}
