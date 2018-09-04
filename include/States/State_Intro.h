@@ -1,19 +1,21 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "BaseState.h"
+#include "EventManager.h"
 
 class State_Intro : public BaseState
 {
 public:
-	State_Intro(StateManager * t_stateManager);
+	State_Intro(StateManager * stateManager);
 	~State_Intro();
 
 	virtual void onCreate();
 
-	void skip(EventDetails * t_details);
+	void skip(EventDetails * details);
 private:
-	sf::Texture m_introTexture;
-	sf::Sprite m_introSprite;
-	sf::Font m_font;
-	sf::Text m_text;
-	float m_timePassed;
+	sf::Texture introTexture;
+	sf::Sprite introSprite;
+	sf::Font font;
+	sf::Text text;
+	float timePassed;
 };

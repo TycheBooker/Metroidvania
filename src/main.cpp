@@ -2,11 +2,11 @@
 
 int main()
 {
-	Game game;
-	while(!game.getWindow()->isDone())
-	{
-		game.update();
-		game.render();
-		game.lateUpdate();
-	}
+    Game game;
+    while (!game.getWindow()->isDone())
+    {
+        game.update();
+        game.render();
+        game.lateUpdate();
+    }
 }

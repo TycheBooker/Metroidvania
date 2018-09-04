@@ -1,8 +1,8 @@
 #include "BaseState.h"
 
-BaseState::BaseState(StateManager * t_stateManager) :
-	m_stateManager(t_stateManager),
-	m_transparent(false)
+BaseState::BaseState(StateManager * stateManager) :
+	stateManager(stateManager),
+	transparent(false)
 {
 }
 
@@ -10,27 +10,27 @@ BaseState::~BaseState()
 {
 }
 
-void BaseState::setTransparent(const bool & t_transparent)
+void BaseState::setTransparent(const bool & transparent)
 {
-	m_transparent = t_transparent;
+	this->transparent = transparent;
 }
 
 bool BaseState::isTransparent() const
 {
-	return m_transparent;
+	return transparent;
 }
 
-void BaseState::setTranscendent(const bool & t_transcendent)
+void BaseState::setTranscendent(const bool & transcendent)
 {
-	m_transcendent = t_transcendent;
+	this->transcendent = transcendent;
 }
 
 bool BaseState::isTranscendent() const
 {
-	return m_transcendent;
+	return transcendent;
 }
 
 StateManager * BaseState::getStateManager()
 {
-	return m_stateManager;
+	return stateManager;
 }

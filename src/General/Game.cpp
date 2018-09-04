@@ -1,15 +1,15 @@
 #include "Game.h"
 
-Game::Game() : 
-	m_window("Metroidvania", sf::Vector2u(800, 600)),
-	m_stateManager(&m_context)
+Game::Game() :
+	window("Metroidvania", sf::Vector2u(800, 600)),
+	stateManager(&context)
 {
-	m_clock.restart();
-	srand(unsigned int(time(nullptr)));
-	m_elapsed = sf::Time::Zero;
-	m_context.m_window = &m_window;
-	m_context.m_eventManager = m_window.getEventManager();
-	m_stateManager.switchTo(StateType::Intro);
+	clock.restart();
+	srand(unsigned(time(nullptr)));
+	elapsed = sf::Time::Zero;
+	context.window = &window;
+	context.eventManager = window.getEventManager();
+	stateManager.switchTo(StateType::Intro);
 }
 
 Game::~Game()
@@ -18,38 +18,37 @@ Game::~Game()
 
 void Game::update()
 {
-	m_window.update();
+	window.update();
 }
 
 void Game::render()
 {
-	m_window.beginDraw();
-	m_stateManager.draw();
-	m_window.endDraw();
+	window.beginDraw();
+	stateManager.draw();
+	window.endDraw();
 }
 
 void Game::lateUpdate()
 {
-	m_stateManager.processRequests();
+	stateManager.processRequests();
 	restartClock();
 }
 
 Window * Game::getWindow()
 {
-	return &m_window;
+	return &window;
 }
 
 sf::Time Game::getElapsed()
 {
-	return m_elapsed;
+	return elapsed;
 }
 
 void Game::restartClock()
 {
-	m_elapsed += m_clock.restart();
+	elapsed += clock.restart();
 	float frametime = 1.f / 60.f;
-	if (m_elapsed.asSeconds() >= frametime)
-	{
-		m_elapsed -= sf::seconds(frametime);
+	if (elapsed.asSeconds() >= frametime) {
+		elapsed -= sf::seconds(frametime);
 	}
 }

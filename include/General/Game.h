@@ -6,21 +6,22 @@
 
 class Game
 {
-public:
-	Game();
-	~Game();
+  public:
+    Game();
+    ~Game();
 
-	void update();
-	void render();
-	void lateUpdate();
+    void update();
+    void render();
+    void lateUpdate();
 
-	Window * getWindow();
-	sf::Time getElapsed();
-private:
-	SharedContext m_context;
-	Window m_window;
-	StateManager m_stateManager;
-	sf::Clock m_clock;
-	sf::Time m_elapsed;
-	void restartClock();
+    Window *getWindow();
+    sf::Time getElapsed();
+
+  private:
+    SharedContext context;
+    Window window;
+    StateManager stateManager;
+    sf::Clock clock;
+    sf::Time elapsed;
+    void restartClock();
 };

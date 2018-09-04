@@ -2,111 +2,111 @@
 
 Window::Window()
 {
-	setup("Window", sf::Vector2u(640, 480));
+    setup("Window", sf::Vector2u(640, 480));
 }
 
-Window::Window(const std::string &t_title, const sf::Vector2u &t_size)
+Window::Window(const std::string &title, const sf::Vector2u &size)
 {
-	setup(t_title, t_size);
+    setup(title, size);
 }
 
 Window::~Window()
 {
-	destroy();
+    destroy();
 }
 
-void Window::setup(const std::string &t_title, const sf::Vector2u &t_size)
+void Window::setup(const std::string &title, const sf::Vector2u &size)
 {
-	m_windowTitle = t_title;
-	m_windowSize = t_size;
-	m_isFullscreen = false;
-	m_isDone = false;
-    m_isFocused = true;
-	m_eventManager.addCallback(StateType(0), "Fullscreen_toggle", &Window::toggleFullscreen, this);
-    m_eventManager.addCallback(StateType(0), "Window_close", &Window::close, this);
-	create();
+    windowTitle = title;
+    windowSize = size;
+    fullscreen = false;
+    done = false;
+    focused = true;
+    eventManager.addCallback(StateType(0), "Fullscreen_toggle", &Window::toggleFullscreen, this);
+    eventManager.addCallback(StateType(0), "Window_close", &Window::close, this);
+    create();
 }
 
 void Window::create()
 {
-	auto style = (m_isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
-	m_window.create({m_windowSize.x, m_windowSize.y, 32}, m_windowTitle, style);
-	m_window.setFramerateLimit(60);
+    auto style = (fullscreen ? sf::Style::Fullscreen : sf::Style::Default);
+    window.create({windowSize.x, windowSize.y, 32}, windowTitle, style);
+    window.setFramerateLimit(60);
 }
 
 void Window::destroy()
 {
-	m_window.close();
+    window.close();
 }
 
 void Window::update()
 {
-	sf::Event event;
-	while(m_window.pollEvent(event))
-	{
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
         if (event.type == sf::Event::LostFocus)
         {
-            m_isFocused = false;
-            m_eventManager.setFocus(false);
+            focused = false;
+            eventManager.setFocus(false);
         }
         else if (event.type == sf::Event::GainedFocus)
         {
-            m_isFocused = true;
-            m_eventManager.setFocus(true);
+            focused = true;
+            eventManager.setFocus(true);
         }
-        m_eventManager.handleEvent(event);
-	}
-    m_eventManager.update();
+        eventManager.handleEvent(event);
+    }
+    eventManager.update();
 }
 
-void Window::toggleFullscreen(EventDetails * t_details)
+void Window::toggleFullscreen(EventDetails *details)
 {
-	m_isFullscreen = !m_isFullscreen;
-	destroy();
-	create();
+    fullscreen = !fullscreen;
+    destroy();
+    create();
 }
 
-void Window::close(EventDetails * t_details)
+void Window::close(EventDetails *details)
 {
-    m_isDone = true;
+    done = true;
 }
 
 void Window::beginDraw()
 {
-	m_window.clear(sf::Color::Black);
+    window.clear(sf::Color::Black);
 }
 
 void Window::endDraw()
 {
-	m_window.display();
+    window.display();
 }
 
 bool Window::isDone()
 {
-	return m_isDone;
+    return done;
 }
 
 bool Window::isFullscreen()
 {
-	return m_isFullscreen;
+    return fullscreen;
 }
 
 bool Window::isFocused()
 {
-    return m_isFocused;
+    return focused;
 }
 
 sf::Vector2u Window::getWindowSize()
 {
-	return m_windowSize;
+    return windowSize;
 }
 
-EventManager* Window::getEventManager()
+EventManager *Window::getEventManager()
 {
-    return &m_eventManager;
+    return &eventManager;
 }
 
-void Window::draw(sf::Drawable & t_drawable)
+void Window::draw(sf::Drawable &drawable)
 {
-	m_window.draw(t_drawable);
+    window.draw(drawable);
 }

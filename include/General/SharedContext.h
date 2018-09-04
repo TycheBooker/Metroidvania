@@ -4,7 +4,7 @@
 
 struct SharedContext
 {
-	SharedContext() : m_window(nullptr), m_eventManager(nullptr) {}
-	Window * m_window;
-	EventManager * m_eventManager;
+    SharedContext() : window(nullptr), eventManager(nullptr) {}
+    Window *window;
+    EventManager *eventManager;
 };
