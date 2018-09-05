@@ -19,6 +19,7 @@ Game::~Game()
 void Game::update()
 {
 	window.update();
+	stateManager.update(elapsed);
 }
 
 void Game::render()

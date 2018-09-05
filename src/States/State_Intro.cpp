@@ -1,7 +1,8 @@
 #include "State_Intro.h"
 #include "StateManager.h"
 
-State_Intro::State_Intro(StateManager *stateManager) : BaseState(stateManager)
+State_Intro::State_Intro(StateManager *stateManager) : 
+	BaseState(stateManager)
 {
 }
 
