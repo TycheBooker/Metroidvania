@@ -1,6 +1,7 @@
 #include "StateManager.h"
 
-StateManager::StateManager(SharedContext *shared)
+StateManager::StateManager(SharedContext *shared) :
+	shared(shared)
 {
     registerState<State_Intro>(StateType::Intro);
     //registerState<State_MainMenu>(StateType::MainMenu);

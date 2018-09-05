@@ -33,7 +33,7 @@ find_package(SFML 2.5 COMPONENTS graphics audio system window REQUIRED)
 add_executable (Metroidvania ${SOURCES})
 
 # Copy Data files to build location
-file(COPY "data/" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/data)
+file(COPY "data" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(Metroidvania sfml-graphics sfml-audio sfml-system sfml-window)
 

@@ -40,9 +40,9 @@ void State_Intro::onDestroy()
 
 void State_Intro::update(const sf::Time &time)
 {
-    if (timePassed < 5.f) {
-        timePassed += time;
-        introSprite.setPosition(introSprite.getPosition().x, introSprite.getPosition().y + (48 * time));
+	if (timePassed < 5.f) {
+        timePassed += time.asSeconds();
+        introSprite.setPosition(introSprite.getPosition().x, introSprite.getPosition().y + (48 * time.asSeconds()));
     }
 }
 
@@ -55,7 +55,7 @@ void State_Intro::draw()
     }
 }
 
-void State_Intro::skip()
+void State_Intro::skip(EventDetails *details)
 {
     if (timePassed >= 5.f) {
         stateManager->switchTo(StateType::MainMenu);
@@ -63,10 +63,10 @@ void State_Intro::skip()
     }
 }
 
-void State_Intro::Activate()
+void State_Intro::activate()
 {
 }
 
-void State_Intro::Deactivate()
+void State_Intro::deactivate()
 {
 }

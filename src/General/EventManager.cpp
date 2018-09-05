@@ -40,7 +40,7 @@ bool EventManager::removeBinding(std::string name)
 
 void EventManager::setCurrentState(StateType state)
 {
-    currentState = state;
+	currentState = state;
 }
 
 void EventManager::setFocus(const bool &focus)
