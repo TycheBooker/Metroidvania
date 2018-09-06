@@ -42,15 +42,12 @@ void Window::destroy()
 void Window::update()
 {
     sf::Event event;
-    while (window.pollEvent(event))
-    {
-        if (event.type == sf::Event::LostFocus)
-        {
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::LostFocus) {
             focused = false;
             eventManager.setFocus(false);
         }
-        else if (event.type == sf::Event::GainedFocus)
-        {
+        else if (event.type == sf::Event::GainedFocus) {
             focused = true;
             eventManager.setFocus(true);
         }

@@ -30,8 +30,7 @@ void MainMenuState::onCreate()
 	strings[1] = "CREDITS";
 	strings[2] = "EXIT";
 
-	for (size_t i = 0; i < 3; i++)
-	{
+	for (size_t i = 0; i < 3; i++) {
 		sf::Vector2f buttonPosition(buttonPos.x, buttonPos.y + (i * (buttonSize.y + buttonPadding)));
 		buttons[i].setSize(buttonSize);
 		buttons[i].setFillColor(sf::Color::Red);
@@ -77,8 +76,7 @@ void MainMenuState::update(const sf::Time & time)
 void MainMenuState::draw()
 {
 	window->draw(text);
-	for (size_t i = 0; i < 3; i++)
-	{
+	for (size_t i = 0; i < 3; i++) {
 		window->draw(buttons[i]);
 		window->draw(labels[i]);
 	}
@@ -88,8 +86,7 @@ void MainMenuState::mouseClick(EventDetails * details)
 {
 	sf::Vector2f mousePosition = window->getRenderWindow()->mapPixelToCoords(details->mouse);
 
-	for (size_t i = 0; i < 3; i++)
-	{
+	for (size_t i = 0; i < 3; i++) {
 		if (buttons[i].getGlobalBounds().contains(mousePosition)) {
 			if (i == 0) {
 				stateManager->switchTo(StateType::Game);

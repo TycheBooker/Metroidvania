@@ -33,6 +33,11 @@ bool BaseState::isTranscendent() const
     return transcendent;
 }
 
+sf::View& BaseState::getView()
+{
+	return view;
+}
+
 StateManager* BaseState::getStateManager()
 {
     return stateManager;
