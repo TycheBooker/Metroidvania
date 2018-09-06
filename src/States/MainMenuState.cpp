@@ -1,16 +1,16 @@
-#include "State_MainMenu.h"
+#include "MainMenuState.h"
 #include "StateManager.h"
 
-State_MainMenu::State_MainMenu(StateManager * stateManager) :
+MainMenuState::MainMenuState(StateManager * stateManager) :
 	BaseState(stateManager)
 {
 }
 
-State_MainMenu::~State_MainMenu()
+MainMenuState::~MainMenuState()
 {
 }
 
-void State_MainMenu::onCreate()
+void MainMenuState::onCreate()
 {
 	font.loadFromFile("data/fonts/arial.ttf");
 	text.setFont(font);
@@ -49,15 +49,15 @@ void State_MainMenu::onCreate()
 		labels[i].setPosition(buttonPosition);
 	}
 
-	eventManager->addCallback(StateType::MainMenu, "Mouse_Left", &State_MainMenu::mouseClick, this);
+	eventManager->addCallback(StateType::MainMenu, "Mouse_Left", &MainMenuState::mouseClick, this);
 }
 
-void State_MainMenu::onDestroy()
+void MainMenuState::onDestroy()
 {
 	eventManager->removeCallback(StateType::MainMenu, "Mouse_Left");
 }
 
-void State_MainMenu::activate()
+void MainMenuState::activate()
 {
 	if (stateManager->hasState(StateType::Game) && labels[0].getString() == "PLAY") {
 		labels[0].setString("RESUME");
@@ -66,15 +66,15 @@ void State_MainMenu::activate()
 	}
 }
 
-void State_MainMenu::deactivate()
+void MainMenuState::deactivate()
 {
 }
 
-void State_MainMenu::update(const sf::Time & time)
+void MainMenuState::update(const sf::Time & time)
 {
 }
 
-void State_MainMenu::draw()
+void MainMenuState::draw()
 {
 	window->draw(text);
 	for (size_t i = 0; i < 3; i++)
@@ -84,7 +84,7 @@ void State_MainMenu::draw()
 	}
 }
 
-void State_MainMenu::mouseClick(EventDetails * details)
+void MainMenuState::mouseClick(EventDetails * details)
 {
 	sf::Vector2f mousePosition = window->getRenderWindow()->mapPixelToCoords(details->mouse);
 

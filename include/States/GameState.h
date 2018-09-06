@@ -3,11 +3,11 @@
 #include "EventManager.h"
 
 
-class State_Game : public BaseState
+class GameState : public BaseState
 {
 public:
-    State_Game(StateManager *stateManager);
-    ~State_Game();
+    GameState(StateManager *stateManager);
+    ~GameState();
 
     virtual void onCreate();
     virtual void onDestroy();

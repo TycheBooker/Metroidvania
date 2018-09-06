@@ -2,11 +2,11 @@
 #include "BaseState.h"
 #include "EventManager.h"
 
-class State_Paused : public BaseState
+class PausedState : public BaseState
 {
 public:
-    State_Paused(StateManager * stateManager);
-    ~State_Paused();
+    PausedState(StateManager * stateManager);
+    ~PausedState();
 
     virtual void onCreate();
     virtual void onDestroy();

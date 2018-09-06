@@ -2,11 +2,11 @@
 #include "BaseState.h"
 #include "EventManager.h"
 
-class State_MainMenu : public BaseState
+class MainMenuState : public BaseState
 {
 public:
-	State_MainMenu(StateManager * stateManager);
-	~State_MainMenu();
+	MainMenuState(StateManager * stateManager);
+	~MainMenuState();
 
 	virtual void onCreate();
 	virtual void onDestroy();

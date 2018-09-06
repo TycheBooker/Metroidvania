@@ -3,11 +3,11 @@
 #include "BaseState.h"
 #include "EventManager.h"
 
-class State_Intro : public BaseState
+class IntroState : public BaseState
 {
 public:
-	State_Intro(StateManager * stateManager);
-	~State_Intro();
+	IntroState(StateManager * stateManager);
+	~IntroState();
 
 	virtual void onCreate();
     virtual void onDestroy();

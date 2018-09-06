@@ -1,16 +1,16 @@
-#include "State_Paused.h"
+#include "PausedState.h"
 #include "StateManager.h"
 
-State_Paused::State_Paused(StateManager * stateManager) :
+PausedState::PausedState(StateManager * stateManager) :
     BaseState(stateManager)
 {
 }
 
-State_Paused::~State_Paused()
+PausedState::~PausedState()
 {
 }
 
-void State_Paused::onCreate()
+void PausedState::onCreate()
 {
     setTransparent(true);
 
@@ -29,32 +29,32 @@ void State_Paused::onCreate()
     overlay.setSize(sf::Vector2f(windowSize));
     overlay.setFillColor(sf::Color(0, 0, 0, 150));
 
-    eventManager->addCallback(StateType::Paused, "Key_P", &State_Paused::unpause, this);
+    eventManager->addCallback(StateType::Paused, "Key_P", &PausedState::unpause, this);
 }
 
-void State_Paused::onDestroy()
+void PausedState::onDestroy()
 {
     eventManager->removeCallback(StateType::Paused, "Key_P");
 }
 
-void State_Paused::activate()
+void PausedState::activate()
 {
 }
 
-void State_Paused::deactivate()
+void PausedState::deactivate()
 {
 }
 
-void State_Paused::update(const sf::Time &time)
+void PausedState::update(const sf::Time &time)
 {}
 
-void State_Paused::draw()
+void PausedState::draw()
 {
     window->draw(overlay);
     window->draw(text);
 }
 
-void State_Paused::unpause(EventDetails *details)
+void PausedState::unpause(EventDetails *details)
 {
     stateManager->switchTo(StateType::Game);
 }

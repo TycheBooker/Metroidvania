@@ -1,16 +1,16 @@
-#include "State_Intro.h"
+#include "IntroState.h"
 #include "StateManager.h"
 
-State_Intro::State_Intro(StateManager *stateManager) :
+IntroState::IntroState(StateManager *stateManager) :
 	BaseState(stateManager)
 {
 }
 
-State_Intro::~State_Intro()
+IntroState::~IntroState()
 {
 }
 
-void State_Intro::onCreate()
+void IntroState::onCreate()
 {
     timePassed = 0.f;
 
@@ -29,15 +29,15 @@ void State_Intro::onCreate()
     text.setOrigin(textRect.left + textRect.width / 2.f, textRect.top + textRect.height / 2.f);
     text.setPosition(windowSize.x / 2.f, windowSize.y / 2.f);
 
-    eventManager->addCallback(StateType::Intro, "Intro_Continue", &State_Intro::skip, this);
+    eventManager->addCallback(StateType::Intro, "Intro_Continue", &IntroState::skip, this);
 }
 
-void State_Intro::onDestroy()
+void IntroState::onDestroy()
 {
     eventManager->removeCallback(StateType::Intro, "Intro_Continue");
 }
 
-void State_Intro::update(const sf::Time &time)
+void IntroState::update(const sf::Time &time)
 {
 	if (timePassed < 5.f) {
         timePassed += time.asSeconds();
@@ -45,7 +45,7 @@ void State_Intro::update(const sf::Time &time)
     }
 }
 
-void State_Intro::draw()
+void IntroState::draw()
 {
     window->draw(introSprite);
     if (timePassed >= 5.f) {
@@ -53,7 +53,7 @@ void State_Intro::draw()
     }
 }
 
-void State_Intro::skip(EventDetails *details)
+void IntroState::skip(EventDetails *details)
 {
     if (timePassed >= 5.f) {
         stateManager->switchTo(StateType::MainMenu);
@@ -61,10 +61,10 @@ void State_Intro::skip(EventDetails *details)
     }
 }
 
-void State_Intro::activate()
+void IntroState::activate()
 {
 }
 
-void State_Intro::deactivate()
+void IntroState::deactivate()
 {
 }
