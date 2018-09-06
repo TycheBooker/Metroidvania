@@ -21,6 +21,7 @@ class Window
     sf::Vector2u getWindowSize();
     sf::RenderWindow *getRenderWindow();
     EventManager *getEventManager();
+	sf::FloatRect getViewSpace();
 
     void toggleFullscreen(EventDetails *details);
     void close(EventDetails *details = nullptr);
