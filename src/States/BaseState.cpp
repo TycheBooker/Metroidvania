@@ -7,6 +7,7 @@ BaseState::BaseState(StateManager *stateManager) :
 {
     eventManager = stateManager->getContext()->eventManager;
     window = stateManager->getContext()->window;
+	view = window->getRenderWindow()->getDefaultView();
 }
 
 BaseState::~BaseState()

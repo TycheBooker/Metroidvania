@@ -52,8 +52,9 @@ void StateManager::draw()
 			}
 			--itr;
 		}
-		for (; itr != states.end(); ++itr) {
-			itr->second->draw();
+		for (auto &itr : states) {
+			shared->window->getRenderWindow()->setView(itr.second->getView());
+			itr.second->draw();
 		}
 	}
 	else {
@@ -77,7 +78,7 @@ SharedContext *StateManager::getContext()
 bool StateManager::hasState(const StateType &type)
 {
 	for (auto itr = states.begin(); itr != states.end(); ++itr) {
-		if (itr->first == type)	{
+		if (itr->first == type) {
 			auto removed = std::find(toRemove.begin(), toRemove.end(), type);
 			if (removed == toRemove.end()) {
 				return true;
@@ -98,6 +99,7 @@ void StateManager::switchTo(const StateType &type)
 			states.erase(itr);
 			states.emplace_back(tmp_type, tmp_state);
 			tmp_state->activate();
+			shared->window->getRenderWindow()->setView(tmp_state->getView());
 			return;
 		}
 	}
@@ -106,6 +108,7 @@ void StateManager::switchTo(const StateType &type)
 	}
 	createState(type);
 	states.back().second->activate();
+	shared->window->getRenderWindow()->setView(states.back().second->getView());
 }
 
 void StateManager::remove(const StateType &type)
