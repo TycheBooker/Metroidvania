@@ -15,7 +15,7 @@ public:
     virtual void activate();
     virtual void deactivate();
 
-    virtual void update(const sf::Time &time) ;
+    virtual void update(const sf::Time &time);
     virtual void draw();
 
 	void skip(EventDetails *details);
