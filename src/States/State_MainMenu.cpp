@@ -49,13 +49,11 @@ void State_MainMenu::onCreate()
 		labels[i].setPosition(buttonPosition);
 	}
 
-	EventManager * eventManager = stateManager->getContext()->eventManager;
 	eventManager->addCallback(StateType::MainMenu, "Mouse_Left", &State_MainMenu::mouseClick, this);
 }
 
 void State_MainMenu::onDestroy()
 {
-	EventManager * eventManager = stateManager->getContext()->eventManager;
 	eventManager->removeCallback(StateType::MainMenu, "Mouse_Left");
 }
 
@@ -78,7 +76,6 @@ void State_MainMenu::update(const sf::Time & time)
 
 void State_MainMenu::draw()
 {
-	sf::RenderWindow *window = stateManager->getContext()->window->getRenderWindow();
 	window->draw(text);
 	for (size_t i = 0; i < 3; i++)
 	{
@@ -89,8 +86,7 @@ void State_MainMenu::draw()
 
 void State_MainMenu::mouseClick(EventDetails * details)
 {
-	sf::RenderWindow *window = stateManager->getContext()->window->getRenderWindow();
-	sf::Vector2f mousePosition = window->mapPixelToCoords(details->mouse);
+	sf::Vector2f mousePosition = window->getRenderWindow()->mapPixelToCoords(details->mouse);
 
 	for (size_t i = 0; i < 3; i++)
 	{
@@ -102,7 +98,7 @@ void State_MainMenu::mouseClick(EventDetails * details)
 				stateManager->switchTo(StateType::Credits);
 			}
 			else if (i == 2) {
-				stateManager->getContext()->window->close();
+				window->close();
 			}
 		}
 	}

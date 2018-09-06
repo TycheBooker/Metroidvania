@@ -2,6 +2,8 @@
 #include <SFML/System.hpp>
 
 class StateManager;
+class EventManager;
+class Window;
 
 class BaseState
 {
@@ -28,6 +30,9 @@ class BaseState
 
   protected:
     StateManager *stateManager;
+    EventManager *eventManager;
+    Window *window;
+
     bool transparent;
     bool transcendent;
 };

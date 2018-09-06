@@ -1,36 +1,39 @@
 #include "BaseState.h"
+#include "StateManager.h"
 
-BaseState::BaseState(StateManager * stateManager) :
-	stateManager(stateManager),
-	transparent(false)
+BaseState::BaseState(StateManager *stateManager) :
+    stateManager(stateManager),
+    transparent(false)
 {
+    eventManager = stateManager->getContext()->eventManager;
+    window = stateManager->getContext()->window;
 }
 
 BaseState::~BaseState()
 {
 }
 
-void BaseState::setTransparent(const bool & transparent)
+void BaseState::setTransparent(const bool &transparent)
 {
-	this->transparent = transparent;
+    this->transparent = transparent;
 }
 
 bool BaseState::isTransparent() const
 {
-	return transparent;
+    return transparent;
 }
 
-void BaseState::setTranscendent(const bool & transcendent)
+void BaseState::setTranscendent(const bool &transcendent)
 {
-	this->transcendent = transcendent;
+    this->transcendent = transcendent;
 }
 
 bool BaseState::isTranscendent() const
 {
-	return transcendent;
+    return transcendent;
 }
 
-StateManager * BaseState::getStateManager()
+StateManager* BaseState::getStateManager()
 {
-	return stateManager;
+    return stateManager;
 }

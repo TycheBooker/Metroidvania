@@ -12,10 +12,10 @@ set (CMAKE_CXX_STANDARD 11)
 include_directories(include include/States include/General)
 
 ## set source files
-# set (SOURCES 
-#		main.cpp 
-#		Game.cpp 
-#		Window.cpp 
+# set (SOURCES
+#		main.cpp
+#		Game.cpp
+#		Window.cpp
 #		EventManager.cpp)
 file(GLOB SOURCES "src/*.cpp" "src/**/*.cpp")
 
@@ -36,5 +36,3 @@ add_executable (Metroidvania ${SOURCES})
 file(COPY "data" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(Metroidvania sfml-graphics sfml-audio sfml-system sfml-window)
-
-# TODO: Add tests and install targets if needed.

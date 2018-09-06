@@ -1,7 +1,7 @@
 #include "State_Intro.h"
 #include "StateManager.h"
 
-State_Intro::State_Intro(StateManager *stateManager) : 
+State_Intro::State_Intro(StateManager *stateManager) :
 	BaseState(stateManager)
 {
 }
@@ -29,13 +29,11 @@ void State_Intro::onCreate()
     text.setOrigin(textRect.left + textRect.width / 2.f, textRect.top + textRect.height / 2.f);
     text.setPosition(windowSize.x / 2.f, windowSize.y / 2.f);
 
-    EventManager *eventManager = stateManager->getContext()->eventManager;
     eventManager->addCallback(StateType::Intro, "Intro_Continue", &State_Intro::skip, this);
 }
 
 void State_Intro::onDestroy()
 {
-    EventManager *eventManager = stateManager->getContext()->eventManager;
     eventManager->removeCallback(StateType::Intro, "Intro_Continue");
 }
 
@@ -49,7 +47,6 @@ void State_Intro::update(const sf::Time &time)
 
 void State_Intro::draw()
 {
-    sf::RenderWindow *window = stateManager->getContext()->window->getRenderWindow();
     window->draw(introSprite);
     if (timePassed >= 5.f) {
         window->draw(text);

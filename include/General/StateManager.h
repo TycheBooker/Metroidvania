@@ -1,8 +1,6 @@
 #pragma once
 #include "BaseState.h"
 #include "SharedContext.h"
-#include "State_Intro.h"
-#include "State_MainMenu.h"
 
 enum class StateType
 {
@@ -16,7 +14,7 @@ enum class StateType
 
 using StateContainer = std::vector<std::pair<StateType, BaseState *>>;
 using TypeContainer = std::vector<StateType>;
-using StateFactory = std::unordered_map<StateType, std::function<BaseState *(void)>>;
+using StateFactory = std::map<StateType, std::function<BaseState *(void)>>;
 
 class StateManager
 {

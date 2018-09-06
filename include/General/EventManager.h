@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <functional>
 #include <SFML/Graphics.hpp>
@@ -79,7 +80,7 @@ struct Binding
 using Bindings = std::unordered_map<std::string, Binding *>;
 using CallbackContainer = std::unordered_map<std::string, std::function<void(EventDetails *)>>;
 enum class StateType;
-using Callbacks = std::unordered_map<StateType, CallbackContainer>;
+using Callbacks = std::map<StateType, CallbackContainer>;
 
 class EventManager
 {
