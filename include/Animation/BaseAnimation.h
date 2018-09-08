@@ -21,6 +21,8 @@ public:
 	void stop();
 	void reset();
 
+	void setLooping(bool loop);
+
 	virtual void update(const sf::Time& deltaTime);
 
 	friend std::stringstream& operator >>(std::stringstream& stream, BaseAnimation& animation);

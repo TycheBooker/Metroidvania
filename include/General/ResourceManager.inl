@@ -1,5 +1,5 @@
 #include "ResourceManager.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 #include <unordered_map>
 #include <sstream>
 #include <fstream>
@@ -57,7 +57,7 @@ bool ResourceManager<Derived, T>::requireResource(const std::string & id)
 template<typename Derived, typename T>
 bool ResourceManager<Derived, T>::releaseResource(const std::string & id)
 {
-	auto resource = fint(id);
+	auto resource = find(id);
 	if (!resource) return false;
 
 	--resource->second;
@@ -80,7 +80,8 @@ template<typename Derived, typename T>
 void ResourceManager<Derived, T>::loadPaths(const std::string & pathFile)
 {
 	std::ifstream paths;
-	paths.open(Utils::getWorkingDirectory() + pathFile);
+	//paths.open(Utils::getWorkingDirectory() + pathFile);
+	paths.open(pathFile);
 	if (paths.is_open()) {
 		std::string line;
 		while (std::getline(paths, line)) {

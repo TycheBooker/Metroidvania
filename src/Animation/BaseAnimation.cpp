@@ -41,7 +41,7 @@ bool BaseAnimation::isInAction()
 
 void BaseAnimation::play()
 {
-	plaing = true;
+	playing = true;
 }
 
 void BaseAnimation::pause()
@@ -60,6 +60,11 @@ void BaseAnimation::reset()
 	frameCurrent = frameStart;
 	elapsedTime = sf::Time::Zero;
 	cropSprite();
+}
+
+void BaseAnimation::setLooping(bool loop)
+{
+	this->loop = loop;
 }
 
 void BaseAnimation::update(const sf::Time & deltaTime)
