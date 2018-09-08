@@ -12,10 +12,11 @@ TextureManager::~TextureManager()
 sf::Texture * TextureManager::load(const std::string & path)
 {
 	sf::Texture* texture = new sf::Texture();
-	if (!texture)->loadFromFile(Utils::getWorkingDirectory() + path) {
+	if (!texture) {
+		texture->loadFromFile(Utils::getWorkingDirectory() + path);
 		delete texture;
 		texture = nullptr;
-		std::cerr << "Failed to load texture: " << t_path << " !" << std::endl;
+		std::cerr << "Failed to load texture: " << path << " !" << std::endl;
 	}
 	return texture;
 }

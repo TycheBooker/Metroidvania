@@ -3,7 +3,6 @@
 #include "EventManager.h"
 #include "StateManager.h"
 #include "SharedContext.h"
-#include "ResourceManager.h"
 
 class Game
 {

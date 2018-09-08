@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "SpriteSheet.h"
 
 Game::Game() :
 	window("Metroidvania", sf::Vector2u(800, 600)),

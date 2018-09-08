@@ -1,10 +1,12 @@
 #pragma once
+#include <string>
+#include <unordered_map>
 
 template <typename Derived, typename T>
 class ResourceManager
 {
 public:
-    ResourceManager(const std::string &pathsFile);
+    ResourceManager(const std::string& pathsFile);
     virtual ~ResourceManager();
 
 	T* load(const std::string& path);

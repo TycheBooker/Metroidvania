@@ -9,7 +9,7 @@ project(Metroidvania)
 set (CMAKE_CXX_STANDARD 11)
 
 # Bring the headers into the project
-include_directories(include include/States include/General)
+include_directories(include include/States include/General include/Animation)
 
 ## set source files
 # set (SOURCES

@@ -1,8 +1,11 @@
 #include "ResourceManager.h"
 #include "Utilities.h"
+#include <unordered_map>
+#include <sstream>
+#include <fstream>
 
 template<typename Derived, typename T>
-ResourceManager<Derived, T>::ResourceManager(const std::string & pathsFile)
+ResourceManager<Derived, T>::ResourceManager(const std::string& pathsFile)
 {
 	loadPaths(pathsFile);
 }
@@ -77,7 +80,7 @@ template<typename Derived, typename T>
 void ResourceManager<Derived, T>::loadPaths(const std::string & pathFile)
 {
 	std::ifstream paths;
-	paths.open(Utils::GetWorkingDirectory() + pathFile);
+	paths.open(Utils::getWorkingDirectory() + pathFile);
 	if (paths.is_open()) {
 		std::string line;
 		while (std::getline(paths, line)) {
@@ -86,7 +89,7 @@ void ResourceManager<Derived, T>::loadPaths(const std::string & pathFile)
 			std::string path;
 			keystream >> pathName;
 			keystream >> path;
-			paths.emplace(pathName, path);
+			this->paths.emplace(pathName, path);
 		}
 		paths.close();
 		return;
