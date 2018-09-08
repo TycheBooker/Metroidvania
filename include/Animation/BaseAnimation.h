@@ -21,6 +21,7 @@ public:
 	void stop();
 	void reset();
 
+	void setName(std::string name);
 	void setLooping(bool loop);
 
 	virtual void update(const sf::Time& deltaTime);
@@ -39,8 +40,8 @@ protected:
 	int frameActionStart;
 	int frameActionEnd;
 
-	sf::Time frameTime;
-	sf::Time elapsedTime;
+	float frameTime;
+	float elapsedTime;
 
 	bool loop;
 	bool playing;

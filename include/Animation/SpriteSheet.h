@@ -1,9 +1,10 @@
 #pragma once
+#include <unordered_map>
+#include <SFML/Graphics.hpp>
 #include "TextureManager.h"
 #include "Directions.h"
 #include "BaseAnimation.h"
-#include <unordered_map>
-#include <SFML/Graphics.hpp>
+#include "DirectionalAnimation.h"
 
 using Animations = std::unordered_map<std::string, BaseAnimation*>;
 
@@ -15,8 +16,10 @@ public:
 
 	void cropSprite(const sf::IntRect& rect);
 	void setSpriteSize(const sf::Vector2i& size);
+	sf::Vector2i getSpriteSize() const;
 	void setSpritePosition(const sf::Vector2f& position);
 	void setDirection(const Direction& direction);
+	Direction getDirection() const;
 
 	bool loadSheet(const std::string& file);
 	void releaseSheet();

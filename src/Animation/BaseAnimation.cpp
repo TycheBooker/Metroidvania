@@ -6,8 +6,8 @@ BaseAnimation::BaseAnimation() :
 	frameStart(0),
 	frameEnd(0),
 	frameRow(0),
-	frameTime(sf::Time::Zero),
-	elapsedTime(sf::Time::Zero),
+	frameTime(0.f),
+	elapsedTime(0.f),
 	frameActionStart(-1),
 	frameActionEnd(-1),
 	loop(false),
@@ -58,8 +58,13 @@ void BaseAnimation::stop()
 void BaseAnimation::reset()
 {
 	frameCurrent = frameStart;
-	elapsedTime = sf::Time::Zero;
+	elapsedTime = 0.f;
 	cropSprite();
+}
+
+void BaseAnimation::setName(std::string name)
+{
+	this->name = name;
 }
 
 void BaseAnimation::setLooping(bool loop)
@@ -71,12 +76,12 @@ void BaseAnimation::update(const sf::Time & deltaTime)
 {
 	if (!playing) return;
 
-	elapsedTime += deltaTime;
+	elapsedTime += deltaTime.asSeconds();
 	if (elapsedTime < frameTime) return;
 
 	frameStep();
 	cropSprite();
-	elapsedTime = sf::Time::Zero;
+	elapsedTime = 0.f;
 }
 
 std::stringstream & operator>>(std::stringstream & stream, BaseAnimation & animation)

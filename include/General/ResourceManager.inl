@@ -19,14 +19,14 @@ ResourceManager<Derived, T>::~ResourceManager()
 template<typename Derived, typename T>
 T * ResourceManager<Derived, T>::load(const std::string & path)
 {
-	return <Derived*>(this)->load(path);
+	return static_cast<Derived*>(this)->load(path);
 }
 
 template<typename Derived, typename T>
 T * ResourceManager<Derived, T>::getResource(const std::string & id)
 {
 	auto resource = find(id);
-	return (resouce ? resource->first : nullptr);
+	return (resource ? resource->first : nullptr);
 }
 
 template<typename Derived, typename T>
@@ -39,9 +39,9 @@ std::string ResourceManager<Derived, T>::getPath(const std::string & id)
 template<typename Derived, typename T>
 bool ResourceManager<Derived, T>::requireResource(const std::string & id)
 {
-	auto resource = Find(id);
-	if (resource) {
-		++resource->second;
+	auto res = find(id);
+	if (res) {
+		++res->second;
 		return true;
 	}
 	auto path = paths.find(id);
