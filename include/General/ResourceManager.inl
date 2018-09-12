@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <sstream>
 #include <fstream>
+#include <iostream>
 
 template<typename Derived, typename T>
 ResourceManager<Derived, T>::ResourceManager(const std::string& pathsFile)

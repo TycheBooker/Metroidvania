@@ -49,3 +49,9 @@ struct TileInfo
     SharedContext* context;
     std::string texture;
 };
+
+struct Tile
+{
+    TileInfo* properties;
+    bool wrap;
+};
